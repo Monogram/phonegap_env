@@ -1,10 +1,2324 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>PhoneGap</title>
-<script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
-</head>
-<body>
-<h1>Hello World!!!</h1>
-</body>
-</html>
+<html class="ui-mobile"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>卓毅游泳會</title>
+    <link href="vendor/jquery.mobile-1.1.0-rc.2.min.css" rel="stylesheet">
+    <link href="app/stylesheets/charts.css" rel="stylesheet">
+    <link href="app/stylesheets/calendar.css" rel="stylesheet">
+	<link href="app/stylesheets/jquery.mobile.css" rel="stylesheet">
+    <script type="text/javascript" src="vendor/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery.mobile-1.1.0-rc.2.min.js"></script>
+	<script type="text/javascript" src="vendor/cordova-1.6.1.js"></script>
+    <script type="text/javascript" src="app/javascripts/charts.js"></script>
+    <script type="text/javascript" src="app/javascripts/calendar.js"></script>
+    <script type="text/javascript" src="app/javascripts/swim.js"></script>
+  </head>
+
+
+  <body class="ui-mobile-viewport ui-overlay-c" onload="swim.onLoad();">
+
+    <!-- Start of first page: #one -->
+    <div id="one" data-role="page" data-url="one" tabindex="0" class="ui-page ui-body-b ui-page-active" style="min-height: 551px;">
+
+      <div data-role="header" data-position="inline">
+        <h1>卓毅游泳會</h1>
+      </div>
+
+      <div data-role="content" class="ui-content" role="main">
+        <div class="content-primary">
+          <ul data-role="listview" class="ui-listview">
+            <li><a href="#schedule" data-transition="none">學習進程</a></li>
+            <li><a href="#calendar" data-transition="none">月曆</a></li>
+            <li><a href="#graph" data-transition="none">圖表</a></li>
+            <li><a href="#swimming-pool" data-transition="none">公眾游泳池資料</a></li>
+            <li><a href="#swimming-tips" data-transition="none">游泳小貼士</a></li>
+            <li><a href="#faq" data-transition="none">常見問題</a></li>
+            <li><a href="#register" data-transition="none">報名</a></li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- /page one -->
+
+
+    <!-- Start of Swimming tips page: #swimming-tips -->
+    <div data-theme="b" id="swimming-tips" data-role="page" data-url="swimming-tips">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>游泳小貼士</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+        <h3>游泳謬誤逐點捉</h3>
+        <p>1.學游泳一定要有天份先學得曉？
+            這個誤解常令習泳者卻步，認為身型、能力、天份等方面缺憾，以致無法學懂游泳。游泳實質是一種技術，如踏腳踏車、用電腦等，適當的教導，加上練習，所有人            
+            也能學會游泳的。
+        </p>
+        <p>2.游到就得喇，姿勢差，唔駛理喇！
+            很多自學游泳者能在泳池中游來游去，只是動作怪點差點，速度慢一點，認為沒有問題，結果沒有深究。
+            從運動分析現象，游泳姿態是極之重要。不但能提升速度外，亦與肌肉關節活動得宜與否有關。不正確的游泳動作，不但有阻保健功效，甚至令肌肉勞損，傷及
+            腱，造成創傷。因此，正確泳姿亦有助減低游泳受傷的機會。
+        </p>
+        <p>3.冬天太凍了，夏天才可游泳。
+            香港冬天是寒冷的，但學員停止習訓等於進度停頓。經驗所得，夏天游泳冬天停的學員在新泳季，很多需要從頭學起。結果浪費了金錢、時間和努力。
+            香港現有恆溫泳池，氣溫保持在廿五度以上，水溫亦保持在廿五至廿八度。絕對適合游泳溫。試想想，在冬天停止游泳，是否代表哮喘、鼻敏感也會停止發作呢？為
+            身體著想，要改改這個觀念了。
+        </p>
+      </div><!-- /content -->
+    </div><!-- /page swimming tips -->
+
+
+    <!-- Start of faq page: #faq -->
+    <div data-theme="b" id="faq" data-role="page" data-url="faq">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>常見問題</h1>
+      </div><!-- /header -->
+
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>Q.想學游泳，但浮不起。是否不能學游泳？</h3>
+        <p>A.人類理論上都是能浮在水面的。身體肌肉較多，浮力會差些，但只要練習閉氣、正確的身體動作和踢水動作配合，每一個人也能在水面浮起。換言之，你也能學會
+        游泳的。請教專業教練吧!
+        </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>Q.游泳時，水衝進鼻孔內，換唔到氣。可以點做？</h3>
+        <p>A.游泳時呼吸的動作有別於陸上呼吸。應該改用口吸鼻呼的方法。其次，呼吸需要配合身體動作，頭出水時吸，頭入水後呼。另外，吸氣張口用力；輕呼慢吹。
+        做到以上三點，情況應該可以改善。
+        </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>Q.游泳時，水經常入耳朵，聽不到東西，緊張便游不到。可以點做？</h3>
+        <p>A. 這裡有兩重點。一是游泳的心理準備；二是水入耳後的處理。游泳前要了解自己的泳術，若水入耳會緊張，代表需要多加練習，建議在泳池作適應。二是處理方
+        法。水入耳其實問題不大，回岸後處理即可。方法是將頭向相反方向傾側，待水流出。若未成功，可將水灌入該耳孔內後，稍等，再將頭向相反方向傾側，便可清理積
+        水。萬試萬靈。
+        </p>
+      </div><!-- /content -->
+    </div><!-- /page faq -->
+    
+     <!-- Start of swimming pool info page: #swimming pool -->
+    <div data-theme="b" id="swimming-pool" data-role="page" data-url="swimming-pool">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>公眾游泳池資料</h1>
+      </div><!-- /header -->
+      
+      <div data-theme="b" data-role="content">
+      	<div class="content-primary">
+      		<ul data-role="listview" class="region-listview">
+      			<li><a href="#areahk" data-transition="none">香港島</a></li>
+            	<li><a href="#areakln" data-transition="none">九龍區</a></li>
+                <li><a href="#areant" data-transition="none">新界區</a></li>
+        	</ul>
+        </div>
+      </div><!-- /content -->
+	</div><!-- /page swimming pool -->
+    
+    <!-- Start of area hk list: # areahk -->
+    <div id="areahk" data-role="page" data-url="areahk">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>香港島</h1>
+      </div><!-- /header -->
+      
+        <ul data-role="listview" class="hk-listview">
+            <li data-role="list-divider">南區</li>
+            <li><a href="#paoyuekong" data-transition="none">包玉剛游泳池</a></li>
+            <li data-role="list-divider">中西區</li>
+            <li><a href="#kennedytown" data-transition="none">堅尼地城游泳池</a></li>
+            <li><a href="#sunyatsen" data-transition="none">中山紀念公園游泳池</a></li>
+            <li data-role="list-divider">灣仔區</li>
+            <li><a href="#morrisonhill" data-transition="none">摩理臣山游泳池</a></li>
+            <li><a href="#wanchai" data-transition="none">灣仔游泳池</a></li>
+            <li data-role="list-divider">東區</li>
+            <li><a href="#chaiwan" data-transition="none">柴灣游泳池</a></li>
+            <li><a href="#victoriapark" data-transition="none">維多利亞公園游泳池</a></li>
+            <li><a href="#islandeast" data-transition="none">港島東游泳池</a></li>
+            <li><a href="#siusaiwan" data-transition="none">小西灣游泳池</a></li>
+        </ul> 
+    </div><!-- /page areahk list -->
+    
+    <!-- Start of swiimming pool paoyuekong: #paoyuekong -->
+    <div id="paoyuekong" data-role="page" data-url="paoyuekong">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>包玉剛游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港黃竹坑深灣道2號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2553 3617，2555 0103 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、*訓練池、習泳池(2)、跳水池、兒童池 、戲水池 、觀眾看台(600個座位)、電子計分板、家庭更衣室</p>
+		<p>殘疾人士專用設施：方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周一進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool paoyuekong -->
+    
+    <!-- Start of swiimming pool paoyuekong: #kennedytown -->
+    <div id="kennedytown" data-role="page" data-url="kennedytown">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>堅尼地城游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港堅尼地城西祥街北2號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2817 7973，2817 4504 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*副池、嬉水池、家庭更衣室
+殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月)</p>
+        <p>上午6時30分至中午12時</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>12月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool kennedytown -->
+    
+    <!-- Start of swiimming pool paoyuekong: #sunyatsen -->
+    <div id="sunyatsen" data-role="page" data-url="sunyatsen">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>中山紀念公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港西營盤東邊街北16號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2540 6708，2853 2566 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: 主池、訓練池、觀眾看台(1000個座位)、
+電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>待定</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周五進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool sunyatsen -->
+    
+    <!-- Start of swiimming pool paoyuekong: #morrisonhill -->
+    <div id="morrisonhill" data-role="page" data-url="morrisonhill">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>摩理臣山游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港灣仔愛群道7號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2575 3028，2879 5622 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: *主池、訓練池、觀眾看台(203個座位)、電子計分板</p>
+        <p>室外設施: 習泳池、幼童池</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>5月1日至6月30日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool morrisonhill -->
+    
+    <!-- Start of swiimming pool paoyuekong: #wanchai -->
+    <div id="wanchai" data-role="page" data-url="wanchai">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>灣仔游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港灣仔港灣道27號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2827 5240，2879 5622 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*主池、電子計分板、觀眾看台(100個座位)</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>上午7時至晚上10時 </p>
+        <p>冬季 (11月至3月 #) </p>
+        <p>上午7時至晚上10時</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>2011年12月14日至2012年1月20日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周五 (上午10時至下午4時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool wanchai -->
+    
+    <!-- Start of swiimming pool paoyuekong: #chaiwan -->
+    <div id="chaiwan" data-role="page" data-url="chaiwan">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>柴灣游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港柴灣新廈街345號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2558 3538</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、訓練池、*習泳池(1)、習泳池(1)、跳水池、嬉水池(3)、觀眾看台(800個座位)、家庭更衣室 </p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool chaiwan -->
+    
+    <!-- Start of swiimming pool paoyuekong: #victoriapark -->
+    <div id="victoriapark" data-role="page" data-url="victoriapark">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>維多利亞公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港銅鑼灣興發街維多利亞公園</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2570 8347</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、訓練池、跳水池、兒童池、戲水池、觀眾看台(1700個座位)、電子計分板 </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^) </p>
+        <p>上午6時30分至中午12時</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>12月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周五進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool victoriapark -->
+    
+    <!-- Start of swiimming pool paoyuekong: #islandeast -->
+    <div id="islandeast" data-role="page" data-url="islandeast">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>港島東游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港西灣河鯉景道52號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2151 4082</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: *訓練池、戲水池、嬉水池、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至9時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>2012年9月12日至12月31日</p>
+        <p>( 進行更換嬉水設施及每年維修工程。)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三 </p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，大清潔行動將安排在同周的周五進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool islandeast -->
+    
+    <!-- Start of swiimming pool paoyuekong: #siusaiwan -->
+    <div id="siusaiwan" data-role="page" data-url="siusaiwan">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>小西灣游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>香港小西灣道15號小西灣綜合大樓一樓</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>3427 3341</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: 訓練池 (1)、*訓練池 (1)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚上6時至9時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>4月16日至5月31日</p>
+        <p>( 進行更換嬉水設施及每年維修工程。)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，大清潔行動將安排在同周的周一進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool siusaiwan -->
+    
+    <!-- Start of area kln list: # areakln -->
+    <div id="areakln" data-role="page" data-url="areakln">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>九龍區</h1>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        <ul data-role="listview" class="kln-listview">
+            <li data-role="list-divider">深水埗</li>
+            <li><a href="#laichikokpark" data-transition="none">荔枝角公園游泳池</a></li>
+            <li><a href="#leichenguk" data-transition="none">李鄭屋游泳池</a></li>
+            <li><a href="#shamshuipopark" data-transition="none">深水埗公園游泳池</a></li>
+            <li data-role="list-divider">油尖旺</li>
+            <li><a href="#kowloonpark" data-transition="none">九龍公園游泳池</a></li>
+            <li><a href="#taikoktsui" data-transition="none">大角咀游泳池</a></li>
+            <li data-role="list-divider">九龍城</li>
+            <li><a href="#taiwanshan" data-transition="none">大環山游泳池</a></li>
+            <li><a href="#homantin" data-transition="none">何文田游泳池</a></li>
+            <li><a href="#kowloontsai" data-transition="none">九龍仔游泳池</a></li>
+            <li data-role="list-divider">黃大仙</li>
+            <li><a href="#morsepark" data-transition="none">摩士公園游泳池</a></li>
+            <li><a href="#hammerhillroad" data-transition="none">斧山道游泳池</a></li>
+            <li data-role="list-divider">觀塘</li>
+            <li><a href="#jordanvalley" data-transition="none">佐敦谷游泳池</a></li>
+            <li><a href="#kwuntong" data-transition="none">觀塘游泳池</a></li>
+        </ul>
+      </div> <!-- content -->     
+    </div><!-- /page areakln list -->
+    
+    <!-- Start of swiimming pool paoyuekong: #laichikokpark -->
+    <div id="laichikokpark" data-role="page" data-url="laichikokpark">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>荔枝角公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍荔枝角荔灣道1號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>32745 5234，2386 0945 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、訓練池、*習泳池(1)、習泳池(1)、跳水池、戲水池、觀眾看台(800個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季 (2011年 4月 至 10月) (只開放主池、訓練池、習泳池及戲水池) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+        <p>冬季 (2011年 11月 至 2012年1月) (只開放主池)  </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>2011年11月至2012年1月期間</p>
+        <p>副池、訓練池、習泳池、跳水池、戲水池暫停開放</p>
+        <p>2012年2月 至6月期間</p>
+        <p>全泳館將暫停開放，以進行改建副池為室內暖水池</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool laichikokpark -->
+    
+    <!-- Start of swiimming pool paoyuekong: #leichenguk -->
+    <div id="leichenguk" data-role="page" data-url="leichenguk">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>李鄭屋游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍深水埗廣利道25號 </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2387 4224，2386 0945 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、*習泳池(1)、習泳池(2)、兒童池 、跳水池 、觀眾看台(700個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool leichenguk -->
+    
+    <!-- Start of swiimming pool paoyuekong: #shamshuipopark -->
+    <div id="shamshuipopark" data-role="page" data-url="shamshuipopark">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>深水埗公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍深水埗荔枝角道733號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2360 2329，2386 0945 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、訓練池、習泳池(2)、跳水池、兒童池 、戲水池、觀眾看台(750個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季 2011年 4月 至 10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+        <p>冬季 (2012年1月至3月) (只開放主池#)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時 (2012年1月1日至30日期間，</p>
+        <p>晚上第三節時段只供團體訓練之用</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>2011年11月至12月期間</p>
+        <p>全泳館於暫停開放，以進行每年維修工程</p>
+        <p>2012年1月至3月期間</p>
+        <p>副池、訓練池、習泳池、跳水池、兒童池、戲水池暫停開放</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周五 </p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool shamshuipopark -->
+    
+    <!-- Start of swiimming pool paoyuekong: #kowloonpark -->
+    <div id="kowloonpark" data-role="page" data-url="kowloonpark">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>九龍公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍尖沙咀柯士甸道22號九龍公園</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2724 3577，2724 3344 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: 主池、*訓練池(2)、跳水池、觀眾看台(1689個座位)、電子計分板、家庭更衣室</p>
+        <p>室外設施: 戲水池、嬉水池(3)</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月) (只開放室內游泳池^ )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>室內泳池﹕ 4月1日至5月31日</p>
+        <p>戶外泳池﹕ 11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool kowloonpark -->
+    
+    <!-- Start of swiimming pool paoyuekong: #taikoktsui -->
+    <div id="taikoktsui" data-role="page" data-url="taikoktsui">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>大角咀游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍大角咀福全街63號大角咀市政大廈4樓 </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2393 1237，2302 1762+</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: *訓練池、嬉水池、家庭更衣室 </p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月^)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>9月12日至10月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool taikoktsui -->
+    
+    <!-- Start of swiimming pool paoyuekong: #taiwanshan -->
+    <div id="taiwanshan" data-role="page" data-url="taiwanshan">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>大環山游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍紅磡環海街7號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2333 1335，2762 2084 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、*副池、習泳池(3)、跳水池、嬉水池(3)、觀眾看台(800個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周五進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool taiwanshan -->
+    
+    <!-- Start of swiimming pool paoyuekong: #homantin -->
+    <div id="homantin" data-role="page" data-url="homantin">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>何文田游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍何文田忠義街1號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2715 0139，2762 2084 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: 嬉水池(2)、家庭更衣室 </p>
+        <p>室外設施: 嬉水池(2)</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+        <p>冬季 (11月至3月) (只開放室內游泳池^) </p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至9時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>室內游泳池：9月12日至10月31日 </p>
+        <p>室外游泳池：9月12日至翌年3月31日 </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool homantin -->
+    
+    <!-- Start of swiimming pool paoyuekong: #kowloontsai -->
+    <div id="kowloontsai" data-role="page" data-url="kowloontsai">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>九龍仔游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍延文禮士道13號九龍仔公園</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2336 5817，2762 2084 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、嬉水池、兒童池、觀眾看台(1000個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時</p>
+        <p>第三節：晚6時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午5時至下午6時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>12月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool kowloontsai -->
+    
+    <!-- Start of swiimming pool paoyuekong: #morsepark -->
+    <div id="morsepark" data-role="page" data-url="morsepark">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>摩士公園游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍黃大仙鳳舞街80號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2320 2023, 2324 1795 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、*副池、習泳池(3)、跳水池(只供團體租用)、兒童池、戲水池(2)、觀眾看台(800個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時30分</p>
+        <p>第三節：晚上6時30分至10時</p>
+        <p>(暫停開放時段: 中午12時至下午1時；下午5時30分至下午6時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p><font color="blue">由於2012年4月4日（周三）及4月6日（周五）為公眾假期，原定的每周大清潔行動將改在4月5日（周四）進行。游泳池在4月4日及4月6日會照常開放。</font></p>
+        <p>逢周五</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool morsepark -->
+    
+    <!-- Start of swiimming pool paoyuekong: #hammerhillroad -->
+    <div id="hammerhillroad" data-role="page" data-url="hammerhillroad">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>斧山道游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍黃大仙龍翔道30號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2350 6173，2350 6062 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: *訓練池、嬉水池、家庭更衣室</p>
+        <p>室外設施: 戲水池、嬉水池、韻律噴泉</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時30分 </p>
+        <p>第三節：晚上6時30分至10時 </p>
+        <p>(暫停開放時段: 中午12時至下午1時；下午5時30分至下午6時30分)</p>
+        <p>冬季 (11月至3月) ( 只開放室內游泳池^ )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至5時30分</p>
+        <p>第三節：晚上6時30分至9時</p>
+        <p>(暫停開放時段 : 中午 12 時至下午1時；下午5時30分至下午6時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>室內游泳池：4月16日至6月15日</p>
+        <p>室外游泳池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool hammerhillroad -->
+    
+    <!-- Start of swiimming pool paoyuekong: #jordanvalley -->
+    <div id="jordanvalley" data-role="page" data-url="jordanvalley">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>佐敦谷游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍牛頭角彩霞道</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2305 5919，2797 3177 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*訓練池、嬉水池(4)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool jordanvalley -->
+    
+    <!-- Start of swiimming pool paoyuekong: #kwuntong -->
+    <div id="kwuntong" data-role="page" data-url="kwuntong">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>觀塘游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>九龍觀塘佳廉道10號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2717 9022，2797 3177 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、習泳池、兒童池、戲水池、觀眾看台(800個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚7時至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行) </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool kwuntong -->
+    
+    <!-- Start of area kln list: # areant -->
+    <div id="areant" data-role="page" data-url="areant">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>新界區</h1>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        <ul data-role="listview" class="nt-listview">
+            <li data-role="list-divider">離島</li>
+            <li><a href="#muiwo" data-transition="none">梅窩游泳池</a></li>
+            <li><a href="#tungchung" data-transition="none">東涌游泳池</a></li>
+            <li data-role="list-divider">屯門</li>
+            <li><a href="#jockeyclubyanoitong" data-transition="none">賽馬會仁愛堂游泳池</a></li>
+            <li><a href="#tuenmun" data-transition="none">屯門游泳池</a></li>
+            <li data-role="list-divider">元朗</li>
+            <li><a href="#tinshuiwai" data-transition="none">天水圍游泳池</a></li>
+            <li><a href="#yuenlong" data-transition="none">元朗游泳池</a></li>
+            <li><a href="#pingshan" data-transition="none">屏山天水圍游泳池</a></li>
+            <li data-role="list-divider">荃灣</li>
+            <li><a href="#shingmunvalley" data-transition="none">城門谷游泳池</a></li>
+            <li><a href="#tsuenkingcircuit" data-transition="none">荃景圍胡忠游泳池</a></li>
+            <li data-role="list-divider">葵青</li>
+            <li><a href="#kwaishing" data-transition="none">葵盛游泳池</a></li>
+            <li><a href="#northkwaichung" data-transition="none">北葵涌賽馬會游泳池</a></li>
+            <li><a href="#tsingyi" data-transition="none">青衣游泳池</a></li>
+            <li data-role="list-divider">北區</li>
+            <li><a href="#fanling" data-transition="none">粉嶺游泳池</a></li>
+            <li><a href="#sheungshui" data-transition="none">上水游泳池</a></li>
+            <li data-role="list-divider">大埔</li>
+            <li><a href="#taipo" data-transition="none">大埔游泳池</a></li>
+            <li data-role="list-divider">沙田</li>
+            <li><a href="#hintin" data-transition="none">顯田游泳池</a></li>
+            <li><a href="#maonshan" data-transition="none">馬鞍山游泳池</a></li>
+            <li><a href="#shatinjockeyclub" data-transition="none">沙田賽馬會游泳池</a></li>
+            <li data-role="list-divider">西貢</li>
+            <li><a href="#saikung" data-transition="none">西貢游泳池</a></li>
+            <li><a href="#tseungkwano" data-transition="none">將軍澳游泳池</a></li>
+        </ul>
+      </div> <!-- content -->     
+    </div><!-- /page areant list -->
+    
+    <!-- Start of swiimming pool paoyuekong: #muiwo -->
+    <div id="muiwo" data-role="page" data-url="muiwo">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>梅窩游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>大嶼山梅窩銀石街5號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2984 2496，2852 3220 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>訓練池、觀眾看台(120個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午8時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至下午7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周五</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool muiwo -->
+    
+    <!-- Start of swiimming pool paoyuekong: #tungchung -->
+    <div id="tungchung" data-role="page" data-url="tungchung">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>東涌游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>東涌達東路5號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2109 9107，2852 3220 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: *主池、觀眾看台(1,000個座位)、電子計分板、家庭更衣室</p>
+        <p>室外設施: *訓練池</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) ( 只開放室內游泳池^ )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池： 9月11日至10月31日</p>
+        <p>訓練池： 11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tungchung -->
+    
+    <!-- Start of swiimming pool paoyuekong: #jockeyclubyanoitong -->
+    <div id="jockeyclubyanoitong" data-role="page" data-url="jockeyclubyanoitong">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>賽馬會仁愛堂游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>屯門青松觀路</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2464 7149，2464 6561 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>嬉水池(2)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周一進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool jockeyclubyanoitong -->
+
+	<!-- Start of swiimming pool paoyuekong: #tuenmun -->
+    <div id="tuenmun" data-role="page" data-url="tuenmun">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>屯門游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>屯門海皇路</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2458 8022，2451 1159 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、訓練池、習泳池(2)、跳水池、戲水池、觀眾看台(700個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至1月中) (只開放主池 # )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>全泳館：2012年1月16日至3月15日</p>
+        <p>副池、訓練池、習泳池、跳水池、戲水池﹕11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周五進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tuenmun -->
+    
+    <!-- Start of swiimming pool paoyuekong: #tinshuiwai -->
+    <div id="tinshuiwai" data-role="page" data-url="tinshuiwai">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>天水圍游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>天水圍天柏路1號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2446 9057，2446 1103</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>訓練池、習泳池、嬉水池、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周五進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tinshuiwai -->
+    
+    <!-- Start of swiimming pool paoyuekong: #yuenlong -->
+    <div id="yuenlong" data-role="page" data-url="yuenlong">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>元朗游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>元朗體育路10號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2475 0184，2449 3506</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、訓練池、跳水池、觀眾看台(700個座位)、家庭更衣室</p>
+        <p>幼童池 (水深0.5米以下) 於六月至八月免費開放</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至2月中) (只開放主池 #)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>副池、訓練池、跳水池﹕ 11月1日至翌年3月31日</p>
+        <p>主池：2012年2月16日至7月15日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool yuenlong -->
+    
+    <!-- Start of swiimming pool paoyuekong: #pingshan -->
+    <div id="pingshan" data-role="page" data-url="pingshan">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>屏山天水圍游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>天水圍聚星路1號 </p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2856 2244，2856 1739</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>訓練池、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月^)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>待定</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool pingshan -->
+    
+    <!-- Start of swiimming pool paoyuekong: #shingmunvalley -->
+    <div id="shingmunvalley" data-role="page" data-url="shingmunvalley">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>城門谷游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>荃灣城門道21號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2416 0522，2414 8985，2212 9738 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施: @主池、觀眾看台(1000個座位)、電子計分板、家庭更衣室</p>
+        <p>室外設施: 訓練池、習泳池、嬉水池(3)</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) (只開放室內游泳池^ )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池：5月1日至6月30日</p>
+        <p>訓練池、習泳池、嬉水池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+        <p>@	城門谷游游泳池內主池水深2米的範圍設有供殘疾人士使用的上落水升降台</p>
+      </div>
+    </div><!-- /page swiimming pool shingmunvalley -->
+    
+    <!-- Start of swiimming pool paoyuekong: #tsuenkingcircuit -->
+    <div id="tsuenkingcircuit" data-role="page" data-url="tsuenkingcircuit">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>荃景圍胡忠游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>荃灣荃景圍178號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2413 5523，2212 9738 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>訓練池、兒童池、嬉水池、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tsuenkingcircuit -->
+    
+    <!-- Start of swiimming pool paoyuekong: #kwaishing -->
+    <div id="kwaishing" data-role="page" data-url="kwaishing">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>天水圍游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>葵盛游泳池</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2426 2081，2424 7201+</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、副池、習泳池(3)、跳水池、兒童池、觀眾看台(700個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p><font color="blue">葵盛游泳池副池將於4月1日至20日期間暫停開放，以進行喉管維修工程。期間，市民仍可使用該場館的主池、習泳池、兒童池及跳水池。</font></p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周五</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool kwaishing -->
+    
+    <!-- Start of swiimming pool paoyuekong: #northkwaichung -->
+    <div id="northkwaichung" data-role="page" data-url="northkwaichung">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>北葵涌賽馬會游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>葵涌和宜合道290號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2422 1779，2424 7201 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、習泳池(2)、跳水池、家庭更衣室</p>
+        <p>幼童池 (水深0.5米以下) 於六月至八月免費開放</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool northkwaichung -->
+    
+    <!-- Start of swiimming pool paoyuekong: #tsingyi -->
+    <div id="tsingyi" data-role="page" data-url="tsingyi">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>青衣游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>青衣青敬路</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2435 6407，2424 7201 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、習泳池、戲水池、嬉水池、觀眾看台(974個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tsingyi -->
+    
+    <!-- Start of swiimming pool paoyuekong: #fanling -->
+    <div id="fanling" data-role="page" data-url="fanling">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>粉嶺游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>粉嶺新運路73號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2675 6951，2679 2863 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*主池、*副池、訓練池、戲水池、觀眾看台(850個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) (只開放主池 # )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池：4月16日至5月31日</p>
+        <p>副池、訓練池、戲水池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool fanling -->
+    
+    <!-- Start of swiimming pool paoyuekong: #sheungshui -->
+    <div id="sheungshui" data-role="page" data-url="sheungshui">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>上水游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>上水天平路38號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2679 4844，2679 2863 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*主池、*副池、訓練池、戲水池、觀眾看台(850個座位)、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool sheungshui -->
+    
+    <!-- Start of swiimming pool paoyuekong: #taipo -->
+    <div id="taipo" data-role="page" data-url="taipo">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>大埔游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>大埔汀太路11號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2661 2244，2665 5058 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、習泳池(2)、跳水池、嬉水池(2)、兒童池、 觀眾看台(800個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool taipo -->
+    
+    <!-- Start of swiimming pool paoyuekong: #hintin -->
+    <div id="hintin" data-role="page" data-url="hintin">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>顯田游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>沙田大圍車公廟路68號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2607 3423，2634 0111 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>室內設施：*主池、按摩池、觀眾看台(250個座位)、家庭更衣室</p>
+        <p>室外設施：訓練池、嬉水池、按摩池</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) ( 只開放室內游泳池^ )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池及室內按摩池：9月11日至10月31日</p>
+        <p>訓練池、嬉水池、室外按摩池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周四</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool hintin -->
+    
+    <!-- Start of swiimming pool paoyuekong: #maonshan -->
+    <div id="maonshan" data-role="page" data-url="maonshan">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>馬鞍山游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>馬鞍山鞍駿街33號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2641 0776，2634 0111+</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、*訓練池、*習泳池(2)、嬉水池(3)、觀眾看台(1200個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周二</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周一進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool maonshan -->
+    
+    <!-- Start of swiimming pool paoyuekong: #shatinjockeyclub -->
+    <div id="shatinjockeyclub" data-role="page" data-url="shatinjockeyclub">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>沙田賽馬會游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>沙田源禾路10號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2693 6613，2634 0111 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*主池、副池、訓練池、習泳池(2)、跳水池、兒童池、觀眾看台(700個座位)、電子計分板、家庭更衣室</p>
+        <p>幼童池 (水深0.5米以下) 於六月至八月免費開放</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) (只開放主池 #)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時至7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池、跳水池：4月1日至5月21日</p>
+        <p>副池、訓練池、習泳池、跳水池、兒童池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p><font color="blue">由於2012年4月4日（周三）及4月6日（周五）為公眾假期，原定的每周大清潔行動將會取消。游泳池在4月4日及4月6日會照常開放。</font></p>
+        <p>逢周五</p>
+        <p>(如大清潔日適逢公眾假期，泳池會照常開放，而大清潔行動將安排在同周的周三進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool shatinjockeyclub -->
+    
+    <!-- Start of swiimming pool paoyuekong: #saikung -->
+    <div id="saikung" data-role="page" data-url="saikung">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>西貢游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>西貢惠民路</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2792 7285，2791 3100 +</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>主池、習泳池、嬉水池、觀眾看台(450個座位)</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周三</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周四進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool saikung -->
+    
+    <!-- Start of swiimming pool paoyuekong: #tseungkwano -->
+    <div id="tseungkwano" data-role="page" data-url="tseungkwano">
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>將軍澳游泳池</h1>
+      </div><!-- /header -->
+      
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>地址</h3>
+        <p>將軍澳運隆路9號</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>查詢電話</h3>
+        <p>2706 7646，2706 6767+</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>設施</h3>
+        <p>*主池、*訓練池、習泳池(2)、跳水池、戲水池、嬉水池(2)、觀眾看台(1155個座位)、電子計分板、家庭更衣室</p>
+        <p>殘疾人士專用設施: 方便通往池面的無阻通道、更衣室、洗手間</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>開放時間</h3>
+        <p>夏季（4月至10月)</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時30分</p>
+        <p>第三節：晚上7時30分至10時</p>
+        <p>(暫停開放時段：中午12時至下午1時；下午6時30分至7時30分)</p>
+        <p>冬季 (11月至3月) (只開放主池 # )</p>
+        <p>第一節：上午6時30分至中午12時</p>
+        <p>第二節：下午1時至6時</p>
+        <p>第三節：晚上7時至9時30分</p>
+        <p>(暫停開放時段 : 中午 12 時至下午1時；下午6時至下午7時)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>配合每年維修工程的暫停開放時間</h3>
+        <p>主池： 2013年4月至5月</p>
+        <p>訓練池、習泳池、跳水池、戲水池、嬉水池：11月1日至翌年3月31日</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>每周大清潔日</h3>
+        <p>逢周一</p>
+        <p>(如每周大清潔日適逢公眾假期，游泳池會照常開放，而大清潔行動將安排在同周的周二進行)</p>
+      </div>
+      <div data-role="collapsible" data-collapsed="true" data-theme="b">
+        <h3>備註</h3>
+        <p>#	戶外暖水游泳池</p>
+        <p>^ 	室內暖水游泳池</p>
+        <p>+ 	辦公時間內 (地區康樂事務辦事處)</p>
+        <p>() 	設施的數目</p>
+        <p>* 	設有專供殘疾人士使用的升降台 </p>
+      </div>
+    </div><!-- /page swiimming pool tseungkwano -->
+
+    <!-- Start of schedule page: #schedule -->
+    <div data-theme="b" id="schedule" data-role="page" data-url="schedule">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>學習進程</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+        <p>SCHEdule schedule</p>
+        <p>blah blah blah</p>
+      </div><!-- /content -->
+    </div><!-- /page schedule -->
+
+    <!-- Start of calendar page: #calendar -->
+    <div data-theme="b" id="calendar" data-role="page" data-url="calendar">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>月曆</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+        <div id="calendar_container">
+        </div>
+      </div><!-- /content -->
+    </div><!-- /page calendar -->
+
+    <!-- Start of calorie page: #calorie -->
+    <div data-theme="b" id="calorie" data-role="page" data-url="calorie">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>卡路里計算器</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+      </div><!-- /content -->
+    </div><!-- /page calorie -->
+
+    <!-- Start of graph page: #graph-->
+    <div data-theme="b" id="graph" data-role="page" data-url="graph">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>圖表</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+        <canvas id="cumulative_calories_per_date" width="500" height="500"></canvas>
+      </div><!-- /content -->
+    </div><!-- /page graph -->
+
+    <!-- Start of faq page: #register -->
+    <div data-theme="b" id="register" data-role="page" data-url="register">
+
+      <div data-role="header">
+        <a data-icon="back" data-rel="back" data-direction="reverse" class="ui-btn-left">返回</a>
+        <h1>報名</h1>
+      </div><!-- /header -->
+
+      <div data-theme="b" data-role="content">
+        <p>REGISTER REGISTER</p>
+        <p>blah blah blah</p>
+      </div><!-- /content -->
+    </div><!-- /page register -->
+
+
+    <div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon ui-icon-loading"></span><h1>loading</h1></div></body></html>

@@ -1,0 +1,92 @@
+#calendar_container {
+  background-color: #FFFFFF;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 500px;
+}
+
+.container {
+  height: 100%;
+  position: relative;
+  white-space: nowrap;
+}
+
+.htitle {
+  text-align: center;
+  width: 100%;
+}
+
+.daynames-table {
+  background: none repeat scroll 0 0 #FFFFFF;
+  color: #555555;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.dayname {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 0 0 0 10px;
+  text-align: left;
+}
+
+.event-container {
+  border-right: 1px solid #DDDDDD;
+  background: none repeat scroll 0 0 white;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 45px;
+  width: 100%;
+}
+
+.month-row {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+.bg-table {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  table-layout: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.bg {
+  border-left: 1px solid #DDDDDD;
+  color: #0000FF;
+  text-align: center;
+}
+.grid {
+  position: relative;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.dtitle {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-left: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  color: #222222;
+  line-height: 16px;
+  overflow: hidden;
+  padding: 4px 9px 0;
+}
+
+.dtitle-fr {
+  border-top: 0 none;
+}
+
+.dtitle-nonmonth {
+  background: none repeat scroll 0 0 #FFFFFF;
+  color: #AAAAAA;
+}
