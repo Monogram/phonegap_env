@@ -9,7 +9,7 @@
 	<key>EnableLocation</key>
 	<false/>
 	<key>EnableAcceleration</key>
-	<true/>
+	<false/>
 	<key>EnableViewportScale</key>
 	<false/>
 	<key>ExternalHosts</key>
@@ -21,5 +21,9 @@
 		<key>Network</key>
 		<string>Network</string>
 	</dict>
+	<key>com.phonegap.emailComposer</key>
+	<string>EmailComposer</string>
+	<key>AutoRotate</key>
+	<false/>
 </dict>
 </plist>

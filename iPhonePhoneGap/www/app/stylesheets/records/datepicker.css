@@ -1,0 +1,11 @@
+.ui-body-c.has-events a,
+.ui-body-c.has-events.ui-datepicker-other-month {
+  background-image: url(../../images/datepicker/circle.gif);
+  background-position: 1px 1px;
+  background-repeat: no-repeat;
+  background-size: 5px auto;
+}
+
+.ui-body-c.has-events:not(.ui-datepicker-current-day) {
+  background-color: #F9F9F9;
+}

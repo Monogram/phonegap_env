@@ -25,5 +25,10 @@
 
 @property (copy)  NSString* invokeString;
 
+/*
+ * Returns YES if it is at least version specified as NSString(X)
+ */
+#define IsAtLeastiOSVersion(X) ([[[UIDevice currentDevice] systemVersion] compare:X options:NSNumericSearch] != NSOrderedAscending)
+
 @end
 
