@@ -30,90 +30,6 @@
  */
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	/* Fix problem with ios 5.0.1+ and Webkit databases described at the following urls:
-     *   https://issues.apache.org/jira/browse/CB-347
-     *   https://issues.apache.org/jira/browse/CB-330
-     * My strategy is to move any existing database from default paths
-     * to Documents/ and then changing app preferences accordingly
-     */
-    
-    NSString* library = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-    NSString* documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    
-    NSString *localStorageSubdir = (IsAtLeastiOSVersion(@"5.1")) ? @"Caches" : @"WebKit/LocalStorage";
-    NSString *localStoragePath = [library stringByAppendingPathComponent:localStorageSubdir];
-    NSString *localStorageDb = [localStoragePath stringByAppendingPathComponent:@"file__0.localstorage"];
-    
-    NSString *WebSQLSubdir = (IsAtLeastiOSVersion(@"5.1")) ? @"Caches" : @"WebKit/Databases";
-    NSString *WebSQLPath = [library stringByAppendingPathComponent:WebSQLSubdir];
-    NSString *WebSQLIndex = [WebSQLPath stringByAppendingPathComponent:@"Databases.db"];
-    NSString *WebSQLDb = [WebSQLPath stringByAppendingPathComponent:@"file__0"];
-    
-    NSString *ourLocalStoragePath = [documents stringByAppendingPathComponent:@"LocalStorage"];;
-    //NSString *ourLocalStorageDb = [documents stringByAppendingPathComponent:@"file__0.localstorage"];
-    NSString *ourLocalStorageDb = [ourLocalStoragePath stringByAppendingPathComponent:@"file__0.localstorage"];
-    
-    NSString *ourWebSQLPath = [documents stringByAppendingPathComponent:@"Databases"];
-    NSString *ourWebSQLIndex = [ourWebSQLPath stringByAppendingPathComponent:@"Databases.db"];
-    NSString *ourWebSQLDb = [ourWebSQLPath stringByAppendingPathComponent:@"file__0"];
-    
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    
-    BOOL copy;
-    NSError *err = nil;
-    copy = [fileManager fileExistsAtPath:localStorageDb] && ![fileManager fileExistsAtPath:ourLocalStorageDb];
-    if (copy) {
-        [fileManager createDirectoryAtPath:ourLocalStoragePath withIntermediateDirectories:YES attributes:nil error:&err];
-        [fileManager copyItemAtPath:localStorageDb toPath:ourLocalStorageDb error:&err];
-        if (err == nil)
-            [fileManager removeItemAtPath:localStorageDb error:&err];
-    }
-    
-    err = nil;
-    copy = [fileManager fileExistsAtPath:WebSQLPath] && ![fileManager fileExistsAtPath:ourWebSQLPath];
-    if (copy) {
-        [fileManager createDirectoryAtPath:ourWebSQLPath withIntermediateDirectories:YES attributes:nil error:&err];
-        [fileManager copyItemAtPath:WebSQLIndex toPath:ourWebSQLIndex error:&err];
-        [fileManager copyItemAtPath:WebSQLDb toPath:ourWebSQLDb error:&err];
-        if (err == nil)
-            [fileManager removeItemAtPath:WebSQLPath error:&err];
-    }
-    
-    NSUserDefaults* appPreferences = [NSUserDefaults standardUserDefaults];
-    NSBundle* mainBundle = [NSBundle mainBundle];
-    
-    NSString *bundlePath = [[mainBundle bundlePath] stringByDeletingLastPathComponent];
-    NSString *bundleIdentifier = [[mainBundle infoDictionary] objectForKey:@"CFBundleIdentifier"];
-    NSString* libraryPreferences = @"Library/Preferences";
-    
-    NSString* appPlistPath = [[bundlePath stringByAppendingPathComponent:libraryPreferences]    stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", bundleIdentifier]];
-    NSMutableDictionary* appPlistDict = [NSMutableDictionary dictionaryWithContentsOfFile:appPlistPath];
-    
-    BOOL dirty = NO;
-    
-    NSString *value;
-    NSString *key = @"WebKitLocalStorageDatabasePathPreferenceKey";
-    value = [appPlistDict objectForKey: key];
-    if (![value isEqual:ourLocalStoragePath]) {
-        [appPlistDict setValue:ourLocalStoragePath forKey:key];
-        dirty = YES;
-    }
-    
-    key = @"WebDatabaseDirectory";
-    value = [appPlistDict objectForKey: key];
-    if (![value isEqual:ourWebSQLPath]) {
-        [appPlistDict setValue:ourWebSQLPath forKey:key];
-        dirty = YES;
-    }
-    
-    if (dirty)
-    {
-        BOOL ok = [appPlistDict writeToFile:appPlistPath atomically:YES];
-        NSLog(@"Fix applied for database locations?: %@", ok? @"YES":@"NO");
-        [appPreferences synchronize];
-    }
-    /* END Fix problem with ios 5.0.1+ and Webkit databases */
-    
 	NSArray *keyArray = [launchOptions allKeys];
 	if ([launchOptions objectForKey:[keyArray objectAtIndex:0]]!=nil) 
 	{
@@ -159,11 +75,6 @@
 	return [ super webViewDidFinishLoad:theWebView ];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)theWebView 
-{
-	return [ super webViewDidStartLoad:theWebView ];
-}
-
 /**
  * Fail Loading With Error
  * Error - If the webpage failed to load display an error with the reason.
@@ -200,4 +111,201 @@
 	[ super dealloc ];
 }
 
+/*
+ *
+ * PERSISTENT LOCALSTORAGE NATIVE SOLUTION for phonegap (tested on 1.3)
+ * iOS 5.1 puts LocalStorage in a vulnerable location (Libary/Caches). This will copy it to
+ * the documents folder as "appdata.db" so that it will be appropriately backed-up and not
+ * overwritten. If "appdata.db" doesn't exist, localStorage will not be overwritten.
+ * Also, upon application suspend (resignActive) or termination, localStorage is saved, so
+ * there should not be any chance that changes to localStorage won't be persisted. [[ short of a power-cycle ]]
+ *
+ * The following should be placed in AppDelegate.m. Note that it //partially// replaces
+ * webViewDidStartLoad:. The remainder of webViewDidStartLoad: (as in phonegap 1.3) is below,
+ * replace/remove as appropriate
+ *
+ * @Author: Kerri Shotts (2012)
+ * @License: MIT License
+ *
+ * Notes: USES ARC. IF USING MRC, apply the appropriate releases.
+ *
+ * Based partially on http://gauravstomar.blogspot.com/2011/08/prepopulate-sqlite-in-phonegap.html
+ *
+ */
+- (BOOL)fileExists: (NSString*) theFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    return [fileManager fileExistsAtPath:theFile];
+    // MRC: make sure to release
+}
+
+- (void)copyFile:(NSString*) sourceFile to:(NSString*) targetPath withName:(NSString*) targetFile
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager createDirectoryAtPath:targetPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    NSString *fullTargetFile = [targetPath stringByAppendingPathComponent:targetFile];
+    
+    NSLog(@"Source File for Copy: %@", sourceFile);
+    NSLog(@"Target File for Copy: %@", fullTargetFile);
+    
+    if ( [self fileExists:fullTargetFile] )
+    {
+        // remove the file first. (Ick! I wish there was a better way...
+        if ( [fileManager removeItemAtPath:fullTargetFile error:nil] == YES )
+        {
+            NSLog (@"Target successfully removed.");
+        }
+        else
+        {
+            NSLog (@"Target could not be removed prior to copy. No copy will occur.");
+            return;
+        }
+    }
+    
+    if ( [fileManager copyItemAtPath:sourceFile toPath:fullTargetFile error:nil] == YES)
+    {
+        NSLog(@"Copy successful.");
+    }
+    else
+    {
+        NSLog(@"Copy unsuccessful.");
+    }
+    // MRC: don't forget to release fileManager where necessary!
+}
+
+
+- (BOOL)isIOS5_1OrHigher
+{
+    // based on: http://stackoverflow.com/a/9320041
+    NSArray *versionCompatibility = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+    
+    if ( [[versionCompatibility objectAtIndex:0] intValue] > 5 )
+    {
+        return YES; // iOS 6+
+    }
+    
+    if ( [[versionCompatibility objectAtIndex:0] intValue] < 5 )
+    {
+        return NO;  // iOS 4.x or lower
+    }
+    
+    if ( [[versionCompatibility objectAtIndex:1] intValue] >= 1 )
+    {
+        return YES; // ios 5.<<1>> or higher
+    }
+    
+    return NO;  // ios 5.<<0.x>> or lower
+    
+}
+
+- (void)copyPersistentStorageToLocalStorage
+{
+    // build localStorage path: ~/Library/WebKit/LocalStorage/file__0.localstorage (for iOS < 5.1)
+    //                          ~/Library/Caches/file__0.localstorage (for iOS >= 5.1 )
+    NSString *localStoragePath;
+    if ( [self isIOS5_1OrHigher] ) 
+    {
+        // for IOS >= 5.1
+        localStoragePath = 
+        [
+         [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] 
+         stringByAppendingPathComponent:@"Caches"
+         ];
+    }
+    else
+    {
+        // for IOS < 5.1;
+        localStoragePath = 
+        [
+         [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] 
+         stringByAppendingPathComponent:@"WebKit/LocalStorage"
+         ];
+    }
+    
+    // build persistentStorage path: ~/Documents/appdata.db
+    NSString *persistentStoragePath = 
+    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; 
+    NSString *persistentStorageFile = [persistentStoragePath stringByAppendingPathComponent:@"appdata.db"];
+    
+    // does the persistent store exist?
+    if ([self fileExists:persistentStorageFile ])
+    {
+        // it does, copy it over localStorage
+        NSLog(@"Copying persistent storage to local storage.");
+        [self copyFile:persistentStorageFile to:localStoragePath withName: @"file__0.localstorage"];
+    }
+    else
+    {
+        NSLog(@"No persistent storage to copy. Using local storage only.");
+    }
+}
+
+- (void)copyLocalStorageToPersistentStorage
+{
+    // build localStorage path: ~/Library/WebKit/LocalStorage/file__0.localstorage (for iOS < 5.1)
+    //                          ~/Library/Caches/file__0.localstorage (for iOS >= 5.1 )
+    NSString *localStoragePath;
+    if ( [self isIOS5_1OrHigher] ) 
+    {
+        // for IOS >= 5.1
+        localStoragePath = 
+        [
+         [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] 
+         stringByAppendingPathComponent:@"Caches"
+         ];
+    }
+    else
+    {
+        // for IOS < 5.1;
+        localStoragePath = 
+        [
+         [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] 
+         stringByAppendingPathComponent:@"WebKit/LocalStorage"
+         ];
+    }
+    
+    NSString *localStorageFile = [localStoragePath stringByAppendingPathComponent:@"file__0.localstorage"];
+    
+    // build persistentStorage path: ~/Documents/appdata.db
+    NSString *persistentStoragePath = 
+    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; 
+    
+    // does the local store exist? (it almost always will)
+    if ([self fileExists:localStorageFile ])
+    {
+        // it does, copy it over persistent Storage
+        NSLog(@"Copying local storage to persistent storage.");
+        [self copyFile:localStorageFile to:persistentStoragePath withName:@"appdata.db"];
+    }
+    else
+    {
+        NSLog(@"No local storage to copy. Using local storage only.");
+    }
+    
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{   
+    // move the local storage data to persistent storage
+    // while we're resigning so that we know our data is safe...
+    [self copyLocalStorageToPersistentStorage];
+    return;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    // move the local storage data to persistent storage
+    // while we're terminating so that we know our data is safe...
+    [self copyLocalStorageToPersistentStorage];
+    return;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)theWebView 
+{
+    [self copyPersistentStorageToLocalStorage];
+    //
+    // END Persistent LocalStorage solution. Remainder of webViewDidStartLoad: should be used.
+    //
+	return [ super webViewDidStartLoad:theWebView ];
+}
 @end
