@@ -1,0 +1,782 @@
+<html class="ui-mobile"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>卓毅游泳會</title>
+    <link rel="stylesheet" href="vendor/jquery.mobile-1.0rc3.min.css">
+    <link rel="stylesheet" href="app/stylesheets/records/calendar.css">
+    <link rel="stylesheet" href="app/stylesheets/records/charts.css">
+    <link rel="stylesheet" href="app/stylesheets/records/create.css">
+    <link rel="stylesheet" href="app/stylesheets/records/datepicker.css">
+    <link rel="stylesheet" href="app/stylesheets/about.css">
+    <link rel="stylesheet" href="app/stylesheets/content.css">
+    <link rel="stylesheet" href="app/stylesheets/footer.css">
+    <link rel="stylesheet" href="app/stylesheets/information.css">
+    <link rel="stylesheet" href="app/stylesheets/jquery.mobile.css">
+		<link rel="stylesheet" href="app/stylesheets/poster.css">
+    <link rel="stylesheet" href="app/stylesheets/register.css">
+    <link rel="stylesheet" href="app/stylesheets/schedule.css">
+    <link rel="stylesheet" href="vendor/jquery.ui.datepicker.mobile.css">
+		<script type="text/javascript" src="vendor/jquery-1.6.4.js"></script>
+    <script>
+      //reset type=date inputs to text
+      $( document ).bind( "mobileinit", function(){
+        $.mobile.page.prototype.options.degradeInputs.date = true;
+      });
+    </script>
+    <script type="text/javascript" src="vendor/jquery.mobile-1.0rc3.min.js"></script>
+    <script type="text/javascript" src="vendor/jQuery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="vendor/jquery.ui.datepicker.mobile.js"></script>
+    <script type="text/javascript" src="vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="vendor/iscroll.js"></script>
+    <script type="text/javascript" src="vendor/cordova-1.6.1.js"></script>
+    <script type="text/javascript" src="app/javascripts/swim.js"></script>
+    <script type="text/javascript" src="app/javascripts/content.js"></script>
+    <script type="text/javascript" src="app/javascripts/footer.js"></script>
+    <script type="text/javascript" src="app/javascripts/poster.js"></script>
+    <script type="text/javascript" src="app/javascripts/records.js"></script>
+    <script type="text/javascript" src="app/javascripts/records/calendar.js"></script>
+    <script type="text/javascript" src="app/javascripts/records/charts.js"></script>
+    <script type="text/javascript" src="app/javascripts/records/create.js"></script>
+    <script type="text/javascript" src="app/javascripts/records/list.js"></script>
+    <script type="text/javascript" src="app/javascripts/information.js"></script>
+    <script type="text/javascript" src="app/javascripts/information/pools.js"></script>
+    <script type="text/javascript" src="app/javascripts/information/pool.js"></script>
+    <script type="text/javascript" src="app/javascripts/schedule.js"></script>
+    <script type="text/javascript" src="app/javascripts/storage.js"></script>
+    <script type="text/javascript" src="app/javascripts/data.js"></script>
+    <script type="text/javascript" src="app/javascripts/data/pools.js"></script>
+  </head>
+
+  <body class="ui-mobile-viewport">
+		<div data-theme="b" data-role="page" data-url="poster">
+			<div id="header-poster" class="ui-bar-b header" data-role="header">
+				<h1>卓毅游泳會</h1>
+			</div>
+			<div id="header-schedule" class="ui-bar-b header" data-role="header" style="display: none;">
+				<h1>自我評估</h1>
+			</div>
+			<div id="header-records" class="ui-bar-b header" data-role="header" style="display: none;">
+				<h1>我的記錄</h1>
+			</div>
+			<div id="header-create" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="records" data-icon="back">返回</a>
+				<h1>新增記錄</h1>
+			</div>
+			<div id="header-calendar" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="records" data-icon="back">返回</a>
+				<h1>我的月曆</h1>
+				<a class="to-create" target="create" data-icon="plus">新增</a>
+			</div>
+			<div id="header-list" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="records" data-icon="back">返回</a>
+				<h1 class="title"></h1>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right" style="top: 0px;">
+					<a data-icon="arrow-l" data-iconpos="notext" data-role="button" class="prev"></a>
+					<a data-icon="arrow-r" data-iconpos="notext" data-role="button" class="next"></a>
+				</div>
+			</div>
+			<div id="header-charts" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="list" data-icon="back">返回</a>
+				<h1 class="title"></h1>
+			</div>
+			<div id="header-information" class="ui-bar-b header" data-role="header" style="display: none;">
+				<h1>有用資料</h1>
+			</div>
+			<div id="header-swimming-pools" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="information" data-icon="back">返回</a>
+				<h1>公眾游泳池資料</h1>
+			</div>
+			<div id="header-areahk" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="swimming-pools" data-icon="back">返回</a>
+				<h1>香港島</h1>
+			</div>
+			<div id="header-areakln" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="swimming-pools" data-icon="back">返回</a>
+				<h1>九龍區</h1>
+			</div>
+			<div id="header-areant" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="swimming-pools" data-icon="back">返回</a>
+				<h1>新界區</h1>
+			</div>
+			<div id="header-pool" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="" data-icon="back">返回</a>
+				<h1></h1>
+			</div>
+			<div id="header-swimming-tips" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="information" data-icon="back">返回</a>
+				<h1>游泳謬誤逐點捉</h1>
+			</div>
+			<div id="header-faq" class="ui-bar-b header"  data-role="header" style="display: none;">
+				<a class="to-page" target="information" data-icon="back">返回</a>
+				<h1>常見問題</h1>
+			</div>
+			<div id="header-about" class="ui-bar-b header" data-role="header" style="display: none;">
+				<h1>關於卓毅</h1>
+			</div>
+			<div id="header-register" class="ui-bar-b header" data-role="header" style="display: none;">
+				<h1>立即報名</h1>
+			</div>
+			<div data-theme="b" data-role="content">
+				<div>
+					<div id="poster" class="page">
+						<div class="poster">
+						</div>
+					</div>
+					<div id="schedule" class="page" style="display: none;">
+						<ul data-role="listview" data-theme="d" data-divider-theme="d">
+							<li class="schedule schedule-1 refresh-iscroll" data-icon="arrow-d"><a>BB班/基礎班(3課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-1" type="checkbox" />
+											<label for="schedule-1-1">
+												克服怕水
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-2" type="checkbox" />
+											<label for="schedule-1-2">
+												拉筋熱身
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-3" type="checkbox" />
+											<label for="schedule-1-3">
+												浮身站立
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-4" type="checkbox" />
+											<label for="schedule-1-4">
+												口吸鼻呼
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-5" type="checkbox" />
+											<label for="schedule-1-5">
+												潛水閉氣
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-1-6" type="checkbox" />
+											<label for="schedule-1-6">
+												浮板踢腳
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-2 refresh-iscroll" data-icon="arrow-d"><a>捷泳(10課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-1" type="checkbox" />
+											<label for="schedule-2-1">
+												捷泳踢腳
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-2" type="checkbox" />
+											<label for="schedule-2-2">
+												捷泳划手
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-3" type="checkbox" />
+											<label for="schedule-2-3">
+												轉頭呼吸
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-4" type="checkbox" />
+											<label for="schedule-2-4">
+												全式配合
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-5" type="checkbox" />
+											<label for="schedule-2-5">
+												捷泳全式
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-2-6" type="checkbox" />
+											<label for="schedule-2-6">
+												背平浮身
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-3 refresh-iscroll" data-icon="arrow-d"><a>背泳(4課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-1" type="checkbox" />
+											<label for="schedule-3-1">
+												浮板背浮
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-2" type="checkbox" />
+											<label for="schedule-3-2">
+												背浮踢腳
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-3" type="checkbox" />
+											<label for="schedule-3-3">
+												背浮出池
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-4" type="checkbox" />
+											<label for="schedule-3-4">
+												背泳划手
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-5" type="checkbox" />
+											<label for="schedule-3-5">
+												背泳配合
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-3-6" type="checkbox" />
+											<label for="schedule-3-6">
+												背泳全式
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-4 refresh-iscroll" data-icon="arrow-d"><a>蛙式(8課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-1" type="checkbox" />
+											<label for="schedule-4-1">
+												蛙腳練習
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-2" type="checkbox" />
+											<label for="schedule-4-2">
+												浮板蛙腳
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-3" type="checkbox" />
+											<label for="schedule-4-3">
+												蛙手練習
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-4" type="checkbox" />
+											<label for="schedule-4-4">
+												蛙式配合
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-5" type="checkbox" />
+											<label for="schedule-4-5">
+												蛙式全式
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-4-6" type="checkbox" />
+											<label for="schedule-4-6">
+												蛙式踩水
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-5 refresh-iscroll" data-icon="arrow-d"><a>蝶式(5課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-1" type="checkbox" />
+											<label for="schedule-5-1">
+												海豚踢腳
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-2" type="checkbox" />
+											<label for="schedule-5-2">
+												豚式蛙手
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-3" type="checkbox" />
+											<label for="schedule-5-3">
+												蝶式划水
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-4" type="checkbox" />
+											<label for="schedule-5-4">
+												蝶式配合
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-5" type="checkbox" />
+											<label for="schedule-5-5">
+												蝶式全式
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-5-6" type="checkbox" />
+											<label for="schedule-5-6">
+												四式轉池
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-6 refresh-iscroll" data-icon="arrow-d"><a>四式進階(10課)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-1" type="checkbox" />
+											<label for="schedule-6-1">
+												四式改良
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-2" type="checkbox" />
+											<label for="schedule-6-2">
+												轉池技術
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-3" type="checkbox" />
+											<label for="schedule-6-3">
+												跳水技術
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-4" type="checkbox" />
+											<label for="schedule-6-4">
+												速度提升
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-5" type="checkbox" />
+											<label for="schedule-6-5">
+												肌力訓練
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-6-6" type="checkbox" />
+											<label for="schedule-6-6">
+												體能培訓
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+							<li class="schedule schedule-7 refresh-iscroll" data-icon="arrow-d"><a>泳隊(定期訓練)</a></li>
+							<li style="display: none;">
+								<div class="ui-grid-a">
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-1" type="checkbox" />
+											<label for="schedule-7-1">
+												高階四式
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-2" type="checkbox" />
+											<label for="schedule-7-2">
+												轉池融合
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-3" type="checkbox" />
+											<label for="schedule-7-3">
+												跳水滑水培訓
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-4" type="checkbox" />
+											<label for="schedule-7-4">
+												競賽訓練
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-a">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-5" type="checkbox" />
+											<label for="schedule-7-5">
+												爆發力提升
+											</label>
+										</fieldset>
+									</div>
+									<div class="ui-block-b">
+										<fieldset data-role="controlgroup" data-type="vertical">
+											<input id="schedule-7-6" type="checkbox" />
+											<label for="schedule-7-6">
+												耐力提升
+											</label>
+										</fieldset>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="schedule-form">
+							<div data-role="fieldcontain">
+								<label for="name">姓名:</label>
+								<input type="text" name="name" id="name" value=""  />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="phone">電話:</label>
+								<input type="text" name="phone" id="phone" value=""  />
+							</div>
+							<div data-role="fieldcontain">
+								<label for="age">年齡:</label>
+								<input type="range" name="age" id="age" value="10" min="0" max="100" data-highlight="true"  />
+							</div>
+							<div data-role="fieldcontain">
+								<a data-role="button" class="submit">發送評估給敎練</a>
+							</div>
+						</div>
+					</div>
+					<div id="records" class="page" style="display: none;">
+						<a class="to-create" target="create" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">新增記錄</a>
+						<a class="to-calendar" target="calendar" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">我的月曆</a>
+						<a class="to-list" target="list" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">累積消耗卡路里</a>
+					</div>
+					<div id="create" class="page page-with-padding"" style="display: none;">
+						<div data-role="fieldcontain">
+							<div class="calendar"></div>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="minutes">游泳時間 (分鐘):</label>
+							<input type="range" id="minutes" value="60" min="0" max="240" step="15" data-highlight="true" data-mini="true" />
+						</div>
+						<div data-role="fieldcontain">
+							<label for="meters">游泳距離 (米):</label>
+							<input type="range" id="meters" value="500" min="0" max="5000" step="50" data-highlight="true" data-mini="true" />
+						</div>
+						<fieldset data-role="controlgroup" data-mini="true">
+							<legend>泳式:</legend>
+							<input type="radio" name="strokes" value="breaststroke" id="strokes-breaststroke" checked="checked" />
+							<label for="strokes-breaststroke">蛙式</label>
+							<input type="radio" name="strokes" value="freestyle" id="strokes-freestyle" />
+							<label for="strokes-freestyle">自由式</label>
+							<input type="radio" name="strokes" value="backstroke" id="strokes-backstroke" />
+							<label for="strokes-backstroke">背泳</label>
+							<input type="radio" name="strokes" value="butterfly-stroke" id="strokes-butterfly-stroke" />
+							<label for="strokes-butterfly-stroke">蝶泳</label>
+							<input type="radio" name="strokes" value="other" id="strokes-other" />
+							<label for="strokes-other">其他</label>
+						</fieldset>
+						<a data-role="button" data-icon="plus" class="create">新增</a>
+					</div>
+					<div id="calendar" class="page page-with-padding"" style="display: none;">
+						<div class="calendar"></div>
+						<div data-role="fieldcontain">
+							<ul class="records" data-role="listview" data-theme="d">
+							</ul>
+						</div>
+					</div>
+					<div id="list" class="page page-with-padding"" style="display: none;">
+						<ul class="records" data-role="listview" data-theme="d" data-divider-theme="d">
+						</ul>
+						<div data-role="fieldcontain">
+							<a class="to-charts" data-role="button">圖表</a>
+						</div>
+					</div>
+					<div id="charts" class="page" style="display: none;">
+						<canvas id="myCanvas" width="200" height="100"></canvas>
+					</div>
+					<div id="information" class="page" style="display: none;">
+						<a class="to-page" target="swimming-pools" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">公眾游泳池資料</a>
+						<a class="to-page" target="swimming-tips" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">游泳謬誤逐點捉</a>
+						<a class="to-page" target="faq" data-role="button" data-icon="arrow-r" data-iconpos="right" data-transition="none">常見問題</a>
+					</div>
+					<div id="swimming-pools" class="page page-with-padding" style="display: none;">
+						<ul data-role="listview" class="region-listview">
+							<li><a class="to-page" target="areahk" data-transition="none">香港島</a></li>
+							<li><a class="to-page" target="areakln" data-transition="none">九龍區</a></li>
+							<li><a class="to-page" target="areant" data-transition="none">新界區</a></li>
+						</ul>
+					</div>
+					<div id="areahk" class="page page-with-padding" style="display: none;">
+						<ul data-role="listview" data-theme="d" class="hk-listview">
+							<li data-role="list-divider">南區</li>
+							<li><a class="to-pool" pool-id="paoyuekong" data-transition="none">包玉剛游泳池</a></li>
+							<li data-role="list-divider">中西區</li>
+							<li><a class="to-pool" pool-id="kennedytown" data-transition="none">堅尼地城游泳池</a></li>
+							<li><a class="to-pool" pool-id="sunyatsen" data-transition="none">中山紀念公園游泳池</a></li>
+							<li data-role="list-divider">灣仔區</li>
+							<li><a class="to-pool" pool-id="morrisonhill" data-transition="none">摩理臣山游泳池</a></li>
+							<li><a class="to-pool" pool-id="wanchai" data-transition="none">灣仔游泳池</a></li>
+							<li data-role="list-divider">東區</li>
+							<li><a class="to-pool" pool-id="chaiwan" data-transition="none">柴灣游泳池</a></li>
+							<li><a class="to-pool" pool-id="victoriapark" data-transition="none">維多利亞公園游泳池</a></li>
+							<li><a class="to-pool" pool-id="islandeast" data-transition="none">港島東游泳池</a></li>
+							<li><a class="to-pool" pool-id="siusaiwan" data-transition="none">小西灣游泳池</a></li>
+						</ul> 
+					</div>
+					<div id="areakln" class="page page-with-padding" style="display: none;">
+						<ul data-role="listview" data-theme="d" class="kln-listview">
+							<li data-role="list-divider">深水埗</li>
+							<li><a class="to-pool" pool-id="laichikokpark" data-transition="none">荔枝角公園游泳池</a></li>
+							<li><a class="to-pool" pool-id="leichenguk" data-transition="none">李鄭屋游泳池</a></li>
+							<li><a class="to-pool" pool-id="shamshuipopark" data-transition="none">深水埗公園游泳池</a></li>
+							<li data-role="list-divider">油尖旺</li>
+							<li><a class="to-pool" pool-id="kowloonpark" data-transition="none">九龍公園游泳池</a></li>
+							<li><a class="to-pool" pool-id="taikoktsui" data-transition="none">大角咀游泳池</a></li>
+							<li data-role="list-divider">九龍城</li>
+							<li><a class="to-pool" pool-id="taiwanshan" data-transition="none">大環山游泳池</a></li>
+							<li><a class="to-pool" pool-id="homantin" data-transition="none">何文田游泳池</a></li>
+							<li><a class="to-pool" pool-id="kowloontsai" data-transition="none">九龍仔游泳池</a></li>
+							<li data-role="list-divider">黃大仙</li>
+							<li><a class="to-pool" pool-id="morsepark" data-transition="none">摩士公園游泳池</a></li>
+							<li><a class="to-pool" pool-id="hammerhillroad" data-transition="none">斧山道游泳池</a></li>
+							<li data-role="list-divider">觀塘</li>
+							<li><a class="to-pool" pool-id="jordanvalley" data-transition="none">佐敦谷游泳池</a></li>
+							<li><a class="to-pool" pool-id="kwuntong" data-transition="none">觀塘游泳池</a></li>
+						</ul>
+					</div>
+					<div id="areant" class="page page-with-padding" style="display: none;">
+						<ul data-role="listview" data-theme="d" class="nt-listview">
+							<li data-role="list-divider">離島</li>
+							<li><a class="to-pool" pool-id="muiwo" data-transition="none">梅窩游泳池</a></li>
+							<li><a class="to-pool" pool-id="tungchung" data-transition="none">東涌游泳池</a></li>
+							<li data-role="list-divider">屯門</li>
+							<li><a class="to-pool" pool-id="jockeyclubyanoitong" data-transition="none">賽馬會仁愛堂游泳池</a></li>
+							<li><a class="to-pool" pool-id="tuenmun" data-transition="none">屯門游泳池</a></li>
+							<li data-role="list-divider">元朗</li>
+							<li><a class="to-pool" pool-id="tinshuiwai" data-transition="none">天水圍游泳池</a></li>
+							<li><a class="to-pool" pool-id="yuenlong" data-transition="none">元朗游泳池</a></li>
+							<li><a class="to-pool" pool-id="pingshan" data-transition="none">屏山天水圍游泳池</a></li>
+							<li data-role="list-divider">荃灣</li>
+							<li><a class="to-pool" pool-id="shingmunvalley" data-transition="none">城門谷游泳池</a></li>
+							<li><a class="to-pool" pool-id="tsuenkingcircuit" data-transition="none">荃景圍胡忠游泳池</a></li>
+							<li data-role="list-divider">葵青</li>
+							<li><a class="to-pool" pool-id="kwaishing" data-transition="none">葵盛游泳池</a></li>
+							<li><a class="to-pool" pool-id="northkwaichung" data-transition="none">北葵涌賽馬會游泳池</a></li>
+							<li><a class="to-pool" pool-id="tsingyi" data-transition="none">青衣游泳池</a></li>
+							<li data-role="list-divider">北區</li>
+							<li><a class="to-pool" pool-id="fanling" data-transition="none">粉嶺游泳池</a></li>
+							<li><a class="to-pool" pool-id="sheungshui" data-transition="none">上水游泳池</a></li>
+							<li data-role="list-divider">大埔</li>
+							<li><a class="to-pool" pool-id="taipo" data-transition="none">大埔游泳池</a></li>
+							<li data-role="list-divider">沙田</li>
+							<li><a class="to-pool" pool-id="hintin" data-transition="none">顯田游泳池</a></li>
+							<li><a class="to-pool" pool-id="maonshan" data-transition="none">馬鞍山游泳池</a></li>
+							<li><a class="to-pool" pool-id="shatinjockeyclub" data-transition="none">沙田賽馬會游泳池</a></li>
+							<li data-role="list-divider">西貢</li>
+							<li><a class="to-pool" pool-id="saikung" data-transition="none">西貢游泳池</a></li>
+							<li><a class="to-pool" pool-id="tseungkwano" data-transition="none">將軍澳游泳池</a></li>
+						</ul>
+					</div>
+					<div id="pool" class="page page-with-padding" style="display: none;">
+						<div  data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>地址</h3>
+							<div class="pool-address"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>查詢電話</h3>
+							<div class="pool-enquiries"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>設施</h3>
+							<div class="pool-facilities"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>開放時間</h3>
+							<div class="pool-opening_schedule"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>配合每年維修工程的暫停開放時間</h3>
+							<div class="pool-temporary_closure_for_annual_maintenance"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>每周大清潔日</h3>
+							<div class="pool-weekly_cleansing_day"></div>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>備註</h3>
+							<div class="pool-notes"></div>
+						</div>
+					</div>
+					<div id="swimming-tips" class="page page-with-padding" style="display: none;">
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>學游泳一定要有天份先學得曉？</h3>
+							<p>
+								這個誤解常令習泳者卻步，認為身型、能力、天份等方面缺憾，以致無法學懂游泳。游泳實質是一種技術，如踏腳踏車、用電腦等，適當的教導，加上練習，所有人            
+								也能學會游泳的。
+							</p>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>游到就得喇，姿勢差，唔駛理喇！</h3>
+							<p>
+								很多自學游泳者能在泳池中游來游去，只是動作怪點差點，速度慢一點，認為沒有問題，結果沒有深究。
+								從運動分析現象，游泳姿態是極之重要。不但能提升速度外，亦與肌肉關節活動得宜與否有關。不正確的游泳動作，不但有阻保健功效，甚至令肌肉勞損，傷及
+								腱，造成創傷。因此，正確泳姿亦有助減低游泳受傷的機會。
+							</p>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>冬天太凍了，夏天才可游泳。</h3>
+							<p>
+								香港冬天是寒冷的，但學員停止習訓等於進度停頓。經驗所得，夏天游泳冬天停的學員在新泳季，很多需要從頭學起。結果浪費了金錢、時間和努力。
+								香港現有恆溫泳池，氣溫保持在廿五度以上，水溫亦保持在廿五至廿八度。絕對適合游泳溫。試想想，在冬天停止游泳，是否代表哮喘、鼻敏感也會停止發作呢？為
+								身體著想，要改改這個觀念了。
+							</p>
+						</div>
+					</div>
+					<div id="faq" class="page page-with-padding" style="display: none;">
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>Q.想學游泳，但浮不起。是否不能學游泳？</h3>
+							<p>A.人類理論上都是能浮在水面的。身體肌肉較多，浮力會差些，但只要練習閉氣、正確的身體動作和踢水動作配合，每一個人也能在水面浮起。換言之，你也能學會
+							游泳的。請教專業教練吧!
+							</p>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>Q.游泳時，水衝進鼻孔內，換唔到氣。可以點做？</h3>
+							<p>A.游泳時呼吸的動作有別於陸上呼吸。應該改用口吸鼻呼的方法。其次，呼吸需要配合身體動作，頭出水時吸，頭入水後呼。另外，吸氣張口用力；輕呼慢吹。
+							做到以上三點，情況應該可以改善。
+							</p>
+						</div>
+						<div data-role="collapsible" data-collapsed="true" data-theme="b">
+							<h3>Q.游泳時，水經常入耳朵，聽不到東西，緊張便游不到。可以點做？</h3>
+							<p>A. 這裡有兩重點。一是游泳的心理準備；二是水入耳後的處理。游泳前要了解自己的泳術，若水入耳會緊張，代表需要多加練習，建議在泳池作適應。二是處理方
+							法。水入耳其實問題不大，回岸後處理即可。方法是將頭向相反方向傾側，待水流出。若未成功，可將水灌入該耳孔內後，稍等，再將頭向相反方向傾側，便可清理積
+							水。萬試萬靈。
+							</p>
+						</div>
+					</div>
+					<div id="about" class="page page-with-padding" style="display: none;">
+						<h3>卓毅游泳會成立多年，一直為成人及兒童提供專業的游泳課程，亦致力提供更多和游泳、健康、運動相關的資訊。如欲了解更多卓毅游泳會的課程，歡迎大家我們的游泳教練或本會職員聯絡。</h3>
+						</br>
+						<h3>電話</h3>
+						<p>97550866 / 34269926 (曾教練)</p>
+						<h3>電郵</h3>
+						<p><a href="mailto:a.tough.swimming.club@gmail.com">a.tough.swimming.club@gmail.com</a></p>
+						<p><a href="http://www.facebook.com/atoughswimmingclub.hk"><img class="facebook" src="app/images/about/facebook.jpg"/></a></p>
+						<h3>地址</h3>
+						<p>佐敦吳松街 165-167 號置域商業大廈 8 樓 B,C 室</p>
+						<div class="location"></div>
+					</div>
+					<div id="register" class="page page-with-padding" style="display: none;">
+						<div class="register-content">
+							<h2>報名細則：</h2>
+							<p>
+								1. 一經卓毅APP報名即可獲折扣優惠。
+							</p>
+							<p>
+								2. 請填寫個人資料，如有虛假資料，報名將會作廢。
+							</p>
+							<p>
+								3. 個人資料將作聯絡之用。
+							</p>
+							<p>
+								4. 優惠價學費首十堂須全數支付。已繳費用不得轉讓他人、延期使用或退回。
+							</p>
+							<p>
+								5. 除特別公佈外，所有公眾假期照常上課。
+							</p>
+							<p>
+								6. 所有游泳班由本會編排；若轉換教練將不作任何通知。
+							</p>
+							<p>
+								7. 本會有權決定所有泳班安排之最終決定權。
+							</p>
+						</div>
+						<a href="http://www.atoughswimmingclub.com/app_register" data-role="button">報名</a>
+					</div>
+				</div>
+			</div>
+			<div data-id="myfooter" data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a class="footer-schedule to-page" target="schedule" data-icon="custom" data-transition="none"></a></li>
+						<li><a class="footer-records to-page" target="records" data-icon="custom" data-transition="none"></a></li>
+						<li><a class="footer-information to-page" target="information" data-icon="custom" data-transition="none"></a></li>
+						<li><a class="footer-about to-page" target="about" data-icon="custom" data-transition="none"></a></li>
+						<li><a class="footer-register to-page" target="register" data-icon="custom" data-transition="none"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+    <script>
+      document.addEventListener("deviceready", _.bind(swim.initiate, swim), false);
+    </script>
+	</body>
+</html>
