@@ -22,8 +22,8 @@ public class AndroidPhoneGapActivity extends DroidGap {
 		final Dialog mainDialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
 		mainDialog.setContentView(image);
     	
+		super.setIntegerProperty("loadUrlTimeoutValue",60000);
         super.loadUrl("file:///android_asset/www/index.html");
-        super.setIntegerProperty("loadUrlTimeoutValue",60000);
         
         final WebViewClient gapClient = super.webViewClient;
 		
