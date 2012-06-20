@@ -31,8 +31,11 @@
 		72F3E874155CC0CC005BCCCE /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72F3E873155CC0CC005BCCCE /* PhoneGap.plist */; };
 		72F3E878155CC0CC005BCCCE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F3E877155CC0CC005BCCCE /* AppDelegate.m */; };
 		72F3E882155CC87C005BCCCE /* www in Resources */ = {isa = PBXBuildFile; fileRef = 72F3E881155CC87C005BCCCE /* www */; };
-		72F3E887155CE760005BCCCE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 72F3E86B155CC0CC005BCCCE /* Default.png */; };
 		72F3E888155CE76C005BCCCE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72F3E86D155CC0CC005BCCCE /* Default@2x.png */; };
+		72FB9D70158D7D8800D05E57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 72FB9D6F158D7D8800D05E57 /* Default.png */; };
+		72FB9D72158D7FD600D05E57 /* icon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 72FB9D71158D7FD600D05E57 /* icon@2x~ipad.png */; };
+		72FB9D74158D800100D05E57 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 72FB9D73158D800100D05E57 /* Default-Portrait~ipad.png */; };
+		72FB9D76158D800B00D05E57 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 72FB9D75158D800B00D05E57 /* Default-Portrait@2x~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +61,6 @@
 		72F3E85F155CC0CC005BCCCE /* iPhonePhoneGap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPhonePhoneGap-Prefix.pch"; sourceTree = "<group>"; };
 		72F3E860155CC0CC005BCCCE /* PhoneGap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneGap.framework; path = /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework; sourceTree = "<absolute>"; };
 		72F3E868155CC0CC005BCCCE /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
-		72F3E86B155CC0CC005BCCCE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
 		72F3E86D155CC0CC005BCCCE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		72F3E86F155CC0CC005BCCCE /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "Resources/splash/Default~ipad.png"; sourceTree = "<group>"; };
 		72F3E871155CC0CC005BCCCE /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
@@ -68,6 +70,10 @@
 		72F3E87A155CC0CC005BCCCE /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		72F3E880155CC0DB005BCCCE /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		72F3E881155CC87C005BCCCE /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		72FB9D6F158D7D8800D05E57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		72FB9D71158D7FD600D05E57 /* icon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x~ipad.png"; sourceTree = "<group>"; };
+		72FB9D73158D800100D05E57 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		72FB9D75158D800B00D05E57 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,9 @@
 		72F3E82B155CC0CC005BCCCE = {
 			isa = PBXGroup;
 			children = (
+				72FB9D75158D800B00D05E57 /* Default-Portrait@2x~ipad.png */,
+				72FB9D73158D800100D05E57 /* Default-Portrait~ipad.png */,
+				72FB9D71158D7FD600D05E57 /* icon@2x~ipad.png */,
 				72F3E881155CC87C005BCCCE /* www */,
 				72F3E857155CC0CC005BCCCE /* iPhonePhoneGap */,
 				72F3E83C155CC0CC005BCCCE /* Frameworks */,
@@ -187,7 +196,7 @@
 		72F3E86A155CC0CC005BCCCE /* splash */ = {
 			isa = PBXGroup;
 			children = (
-				72F3E86B155CC0CC005BCCCE /* Default.png */,
+				72FB9D6F158D7D8800D05E57 /* Default.png */,
 				72F3E86D155CC0CC005BCCCE /* Default@2x.png */,
 				72F3E86F155CC0CC005BCCCE /* Default~ipad.png */,
 			);
@@ -271,10 +280,13 @@
 				72F3E872155CC0CC005BCCCE /* Capture.bundle in Resources */,
 				72F3E874155CC0CC005BCCCE /* PhoneGap.plist in Resources */,
 				72F3E882155CC87C005BCCCE /* www in Resources */,
-				72F3E887155CE760005BCCCE /* Default.png in Resources */,
 				72F3E888155CE76C005BCCCE /* Default@2x.png in Resources */,
 				7215003C1565FADD00DE8DD0 /* icon@2x.png in Resources */,
 				7215003E1565FAE800DE8DD0 /* icon.png in Resources */,
+				72FB9D70158D7D8800D05E57 /* Default.png in Resources */,
+				72FB9D72158D7FD600D05E57 /* icon@2x~ipad.png in Resources */,
+				72FB9D74158D800100D05E57 /* Default-Portrait~ipad.png in Resources */,
+				72FB9D76158D800B00D05E57 /* Default-Portrait@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +398,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lam Siu Ngai (GSDY59L8F9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lam Siu Ngai (GSDY59L8F9)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -393,9 +407,12 @@
 				GCC_PREFIX_HEADER = "iPhonePhoneGap/iPhonePhoneGap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
 				INFOPLIST_FILE = "iPhonePhoneGap/iPhonePhoneGap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "117972D9-48AB-431C-90EB-02609564A49E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "117972D9-48AB-431C-90EB-02609564A49E";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -408,6 +425,8 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lam Siu Ngai (GSDY59L8F9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lam Siu Ngai (GSDY59L8F9)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
@@ -415,9 +434,12 @@
 				GCC_PREFIX_HEADER = "iPhonePhoneGap/iPhonePhoneGap-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
 				INFOPLIST_FILE = "iPhonePhoneGap/iPhonePhoneGap-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "117972D9-48AB-431C-90EB-02609564A49E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "117972D9-48AB-431C-90EB-02609564A49E";
 				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
